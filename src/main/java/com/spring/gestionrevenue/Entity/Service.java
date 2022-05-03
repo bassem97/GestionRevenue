@@ -1,58 +1,48 @@
 package com.spring.gestionrevenue.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@ToString
 public class Service implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+    private Long idService;
 
     private String nom;
     private String description;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idDepartment")
+    @JsonIgnoreProperties({"services"})
+    private Department department;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idService")
+    @JsonIgnoreProperties({"service"})
+    private List<Revenue> revenues;
+
 
     public Service() {
+        revenues = new ArrayList<>();
     }
 
     public Service(String nom, String description) {
         this.nom = nom;
         this.description = description;
-    }
+        revenues = new ArrayList<>();
 
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "Service{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", description='" + description + '\'' +
-                '}';
     }
 }

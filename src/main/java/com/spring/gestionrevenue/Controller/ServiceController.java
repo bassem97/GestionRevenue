@@ -19,6 +19,12 @@ public class ServiceController {
     @Autowired
     private ServiceService serviceService;
 
+    @ApiOperation(value = "Retreive all services")
+    @GetMapping("list")
+    public List<Service> findAll() {
+        return serviceService.findAll();
+    }
+
     @ApiOperation(value = "Add service")
     @PostMapping("add")
     public Service add(@RequestBody Service service) {
@@ -37,11 +43,7 @@ public class ServiceController {
         serviceService.delete(id);
     }
 
-    @ApiOperation(value = "Retreive all services")
-    @GetMapping("list")
-    public List<Service> findAll() {
-        return serviceService.findAll();
-    }
+
 
     @ApiOperation(value = "Find service by provided id")
     @GetMapping("findById/{id}")
