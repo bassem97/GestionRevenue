@@ -39,9 +39,10 @@ public class Service implements Serializable {
         revenues = new ArrayList<>();
     }
 
-    public Service(String nom, String description) {
+    public Service(String nom, String description, Department department) {
         this.nom = nom;
         this.description = description;
+        this.department = department;
         revenues = new ArrayList<>();
 
     }

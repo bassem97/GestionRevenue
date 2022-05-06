@@ -21,7 +21,6 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
-
     }
 
     private ApiInfo apiInfo () {
@@ -31,7 +30,6 @@ public class SwaggerConfig {
                 .contact(new Contact("JADOUI Bassem", "https://www.linkedin.com/in/bassem-jadoui-85b6b9199/", "bassem.jadoui@esprit.tn"))
                 .license("")
                 .build();
-
     }
 
 }
