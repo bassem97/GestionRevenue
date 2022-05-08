@@ -57,7 +57,7 @@ public class    TokenProvider {
     public String generateToken(UserDetails userDetails, long tokenDays){
         Map<String, Object> claims = new HashMap<>();
         this.setTokenHours(tokenDays*24);
-        return createToken(claims, userDetails.getUsername());
+        return "Bearer "+createToken(claims, userDetails.getUsername());
 
     }
 

@@ -5,6 +5,7 @@ import com.spring.gestionrevenue.Config.Security.TokenProvider;
 import com.spring.gestionrevenue.Service.User.UserServiceDetails;
 import com.spring.gestionrevenue.Utils.JwtRespone;
 import com.spring.gestionrevenue.Utils.LoginModel;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("*")
 @Slf4j
 @RequestMapping("/auth/")
+@Api(tags = "Authentication management")
 public class AuthenticationController {
 
     @Autowired
