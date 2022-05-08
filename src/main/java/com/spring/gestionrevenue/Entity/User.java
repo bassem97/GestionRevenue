@@ -21,11 +21,18 @@ public class User implements Serializable {
     private String email;
     private String password;
 
+    private String role;
+
+
 
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+    public User(String username, String email, String password,String role) {
+        new User( username, email,  password);
+        this.role = role;
 
     }
 }

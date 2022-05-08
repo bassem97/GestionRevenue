@@ -53,9 +53,9 @@ public class UserService implements IUserService, ICrudService<User,Long> {
     public User findById(Long aLong) {
         return userRepository.findById(aLong).get();
     }
-    @Bean
-    public BCryptPasswordEncoder encoder(){
-        return new BCryptPasswordEncoder();
-    }
 
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 }
