@@ -21,6 +21,7 @@ public class Service implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idService;
 
+    @Column(unique=true)
     private String nom;
     private String description;
 
