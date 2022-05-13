@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
@@ -48,5 +49,12 @@ public class RevenueController {
     @GetMapping("findById/{id}")
     public Revenue findById(@PathVariable("id") Long id) {
         return revenueService.findById(id);
+    }
+
+
+    @ApiOperation(value = "retreive revenue by month")
+    @GetMapping("getRevenueByMonth")
+    public Map<String, Float> getRevenueByMonth() {
+        return revenueService.getRevenueByMonth();
     }
 }

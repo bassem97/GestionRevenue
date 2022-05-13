@@ -49,7 +49,7 @@ public class GestionRevenueApplication {
 		// Port
 		String port = environment.getProperty("server.port");
 
-		browse("http://localhost:"+port+"/swagger-ui/index.html");
+//		browse("http://localhost:"+port+"/swagger-ui/index.html");
 	}
 
 	public static void browse(String url) {

@@ -1,5 +1,8 @@
 package com.spring.gestionrevenue.Service.Revenue;
 
-public interface IRevenueService {
+import java.util.HashMap;
+import java.util.Map;
 
+public interface IRevenueService {
+    Map<String, Float> getRevenueByMonth();
 }

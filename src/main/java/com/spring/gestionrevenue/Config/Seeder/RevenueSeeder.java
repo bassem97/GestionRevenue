@@ -23,9 +23,9 @@ public class RevenueSeeder {
     private RevenueService revenueService;
 
     public void seed() {
-        revenue1 = new Revenue(33F,new Date(2022, Calendar.APRIL,15) , new Date(2022, Calendar.MAY,1),serviceSeeder.service1 );
-        revenue2 = new Revenue(42F,new Date(2022, Calendar.MAY,2) , new Date(2022, Calendar.MAY,10),serviceSeeder.service1 );
-        revenue3 = new Revenue(42F,new Date(2022, Calendar.MAY,11) , new Date(2022, Calendar.MAY,20),serviceSeeder.service2 );
+        revenue1 = new Revenue(33F,new Date(122, Calendar.APRIL,15) ,serviceSeeder.service1 );
+        revenue2 = new Revenue(42F,new Date(122, Calendar.MAY,2) ,serviceSeeder.service1 );
+        revenue3 = new Revenue(42F,new Date(122, Calendar.JUNE,11),serviceSeeder.service2 );
 
         revenueService.add(revenue1);
         revenueService.add(revenue2);

@@ -24,10 +24,12 @@ public class Revenue implements Serializable {
 //    @JsonIgnoreProperties({"services"})
     private com.spring.gestionrevenue.Entity.Service  service;
 
-    public Revenue(float montant, Date dateDebut, Date dateFin, Service service) {
+    public Revenue(float montant,Date dateFin, Service service) {
         this.montant = montant;
-        this.dateDebut = dateDebut;
+        this.dateDebut = new Date();
         this.dateFin = dateFin;
         this.service = service;
     }
+
+
 }

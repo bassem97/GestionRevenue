@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -49,5 +50,11 @@ public class ServiceController {
     @GetMapping("findById/{id}")
     public Service findById(@PathVariable("id") Long id) {
         return serviceService.findById(id);
+    }
+
+    @ApiOperation(value = "retreive totale revenues by service")
+    @GetMapping("getTotalRevenuesByService")
+    public HashMap<String, Float> getRevenueByService() {
+        return serviceService.getRevenueByService();
     }
 }
