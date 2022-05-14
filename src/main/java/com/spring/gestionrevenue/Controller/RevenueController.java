@@ -1,5 +1,6 @@
 package com.spring.gestionrevenue.Controller;
 
+import com.spring.gestionrevenue.Entity.Result;
 import com.spring.gestionrevenue.Entity.Revenue;
 import com.spring.gestionrevenue.Service.Revenue.RevenueService;
 import io.swagger.annotations.Api;
@@ -54,7 +55,7 @@ public class RevenueController {
 
     @ApiOperation(value = "retreive revenue by month")
     @GetMapping("getRevenueByMonth")
-    public Map<String, Float> getRevenueByMonth() {
+    public List<Result> getRevenueByMonth() {
         return revenueService.getRevenueByMonth();
     }
 }

@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
         http.csrf()
                 .disable()
                 .authorizeRequests()
-//                .antMatchers("/**").permitAll()
+                .antMatchers("/**").permitAll()
                 .antMatchers("/auth/login").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers(AUTH_WHITELIST).permitAll()

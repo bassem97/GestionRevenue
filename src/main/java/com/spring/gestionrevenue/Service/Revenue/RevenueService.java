@@ -1,5 +1,6 @@
 package com.spring.gestionrevenue.Service.Revenue;
 
+import com.spring.gestionrevenue.Entity.Result;
 import com.spring.gestionrevenue.Entity.Revenue;
 import com.spring.gestionrevenue.Repository.RevenueRepository;
 import com.spring.gestionrevenue.Service.ICrudService;
@@ -8,9 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service @Slf4j
 public class RevenueService implements IRevenueService, ICrudService<Revenue,Long> {
@@ -54,11 +54,14 @@ public class RevenueService implements IRevenueService, ICrudService<Revenue,Lon
     }
 
     @Override
-    public Map<String, Float> getRevenueByMonth() {
+    public List<Result> getRevenueByMonth() {
         Map<String, Float> dates = new HashMap<>();
         Map<String, Float> result = new HashMap<>();
+        List<Result> results = new ArrayList<>();
 
-        this.findAll().forEach(revenue -> {
+        this.findAll().stream().sorted(Comparator.comparing(Revenue::getDateFin))
+                .collect(Collectors.toList())
+                .forEach(revenue -> {
             dates.put(
                     new SimpleDateFormat("yyyy-MM-dd").format(revenue.getDateFin()),
                     revenue.getMontant()
@@ -69,9 +72,10 @@ public class RevenueService implements IRevenueService, ICrudService<Revenue,Lon
             String key = entry.getKey().split("-")[0] + "/" + entry.getKey().split("-")[1];
             Float value = entry.getValue();
             Float oldValue = result.get(key) != null ? result.get(key) : 0;
-            result.put(key, oldValue + value);
+            Result rss = new Result(key, oldValue + value);
+            results.add(rss);
         }
 
-        return result;
+        return results;
     }
 }
