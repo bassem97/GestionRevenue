@@ -1,5 +1,6 @@
 package com.spring.gestionrevenue.Controller;
 
+import com.spring.gestionrevenue.Entity.Result;
 import com.spring.gestionrevenue.Entity.Service;
 import com.spring.gestionrevenue.Repository.ServiceRepository;
 import com.spring.gestionrevenue.Service.Service.ServiceService;
@@ -54,7 +55,7 @@ public class ServiceController {
 
     @ApiOperation(value = "retreive totale revenues by service")
     @GetMapping("getTotalRevenuesByService")
-    public HashMap<String, Float> getRevenueByService() {
+    public List<Result>  getRevenueByService() {
         return serviceService.getRevenueByService();
     }
 }

@@ -1,12 +1,14 @@
 package com.spring.gestionrevenue.Service.Service;
 
 import com.spring.gestionrevenue.Entity.Department;
+import com.spring.gestionrevenue.Entity.Result;
 import com.spring.gestionrevenue.Entity.Revenue;
 import com.spring.gestionrevenue.Repository.ServiceRepository;
 import com.spring.gestionrevenue.Service.ICrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,16 +52,10 @@ public class ServiceService implements IServiceService, ICrudService<com.spring.
     }
 
     @Override
-    public HashMap<String, Float> getRevenueByService() {
-        HashMap<String, Float> result = new HashMap<>();
+    public List<Result> getRevenueByService() {
+        List<Result> result = new ArrayList<>();
         this.findAll().forEach(service -> {
-            result.put(
-                    service.getNom(),
-                    (float) service.getRevenues()
-                            .stream()
-                            .mapToDouble(Revenue::getMontant)
-                            .sum()
-            );
+            result.add(new Result((float) service.getRevenues().stream().mapToDouble(Revenue::getMontant).sum(),service.getNom()));
         });
         return result;
     }
