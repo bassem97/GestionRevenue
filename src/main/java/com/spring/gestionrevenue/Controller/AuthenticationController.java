@@ -2,6 +2,7 @@ package com.spring.gestionrevenue.Controller;
 
 import com.spring.gestionrevenue.Config.Security.SecurityConfig;
 import com.spring.gestionrevenue.Config.Security.TokenProvider;
+import com.spring.gestionrevenue.Service.User.UserService;
 import com.spring.gestionrevenue.Service.User.UserServiceDetails;
 import com.spring.gestionrevenue.Utils.JwtRespone;
 import com.spring.gestionrevenue.Utils.LoginModel;
@@ -34,13 +35,15 @@ public class AuthenticationController {
     @Autowired
     private UserServiceDetails userDetailsService;
 
+    @Autowired
+    private UserService userService;
+
 //    @PostMapping("login/{isRemembered}")
 //    public ResponseEntity<?> authenticate(@RequestBody LoginModel loginModel, @PathVariable("isRemembered") boolean isRemembered){
 
 
     @PostMapping("login")
     public ResponseEntity<?> authenticate(@RequestBody LoginModel loginModel){
-        log.info("### ", loginModel);
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginModel.getEmail(),
@@ -56,7 +59,7 @@ public class AuthenticationController {
             token = tokenProvider.generateToken(userDetails,1);
 //        else token = tokenProvider.generateToken(userDetails,9999);
 
-        return ResponseEntity.ok(new JwtRespone(token));
+        return ResponseEntity.ok(new JwtRespone(token,userService.findByEmail(loginModel.getEmail())));
     }
 
 

@@ -2,6 +2,7 @@ package com.spring.gestionrevenue.Service.User;
 
 
 import com.spring.gestionrevenue.Entity.MyUserDetails;
+import com.spring.gestionrevenue.Entity.User;
 import com.spring.gestionrevenue.Repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,9 @@ public class UserServiceDetails implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 //        log.info("LL STRING "+ s);
 //        log.info("LL STRING "+ userRepository.findByEmail(s));
-        return new MyUserDetails(userRepository.findByEmail(s));
+        MyUserDetails myUserDetails = new MyUserDetails(userRepository.findByEmail(s));
+        return myUserDetails;
+
     }
 
     @Bean
